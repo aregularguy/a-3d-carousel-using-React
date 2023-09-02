@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;600;700&display=swap");
+.container-main {
+  font-family: 'Lato';
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 32px;
+}
+
+.feature {
+  color: var(--primary-black-black-500, #231F20);
+  font-family: Lato;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 42px;
+  /* 65.625% */
+}
+
+.small-para {
+  color: var(--primary-black-black-500, #231F20);
+  text-align: center;
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  /* 133.333% */
+}
+/*# sourceMappingURL=Main.css.map */

@@ -1,0 +1,14 @@
+@import './varaibles.scss';
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $navbar-font;
+    // height: 200vh;
+}

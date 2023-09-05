@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;600;700&display=swap");
 .container-main {
   font-family: 'Lato';
+  margin: 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -30,6 +33,7 @@
 .small-para {
   color: var(--primary-black-black-500, #231F20);
   text-align: center;
+
   font-family: Lato;
   font-size: 24px;
   font-style: normal;

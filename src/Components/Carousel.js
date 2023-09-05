@@ -1,53 +1,102 @@
-import React, { useState } from 'react';
-import p1 from "../assests/1.png"
-import p2 from "../assests/2.png"
-import p3 from "../assests/3.png"
-import p4 from "../assests/4.png"
-import "../Styles/Carousel.css"
+import React, { useState, useEffect, useCallback } from "react";
+import "../Styles/Carousel.css";
 
-const Carousel = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [
-        p1, p2, p3, p4
-    ];
+const Carousel = ({
+  images,
+  showControls = true,
+  showIndicators = true,
+  effect = "slide",
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
-    const nextIndex = (currentIndex + 1) % images.length;
-
-    const rotateCarousel = (index) => {
-        setCurrentIndex(index);
-    }
-
-    return (
-        <div className="carousel-container">
-            <div className="carousel">
-                {images.map((item, index) => (
-                    <div
-                        key={index}
-                        className={`carousel-item ${index === currentIndex ? 'active' : ''}`}
-                        onClick={() => rotateCarousel(index)}
-                    >
-                        <img
-                            src={item}
-                            alt={`Item ${index + 1}`}
-                            style={{
-                                minWidth: '10%',
-                                minHeight: '10%',
-                                margin: '0 auto', // Center the image horizontally
-                                display: 'block', // Remove extra space below the image
-                            }}
-                        />
-                    </div>
-                ))}
-            </div>
-            <button className="prev-button" onClick={() => rotateCarousel(prevIndex)}>
-                Prev
-            </button>
-            <button className="next-button" onClick={() => rotateCarousel(nextIndex)}>
-                Next
-            </button>
-        </div>
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
-}
+  }, [images.length]);
+  console.log("size of img" + images.length);
+  const handleNext = useCallback(() => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  }, [images.length]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") {
+      handleNext();
+    } else if (event.key === "ArrowLeft") {
+      handlePrev();
+    }
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [handleNext]);
+
+  return (
+    <div
+      className={`carousel-wrapper ${effect}`}
+      onKeyDown={handleKeyDown}
+      tabIndex="0"
+      aria-live="polite"
+      aria-roledescription="carousel"
+    >
+      <div className="carousel-items">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`carousel-item ${index === activeIndex ? "active" : ""}`}
+            style={
+              effect === "slide"
+                ? { transform: `translateX(-${activeIndex * 100}%)` }
+                : {}
+            }
+          >
+            <img src={image.src} alt={image.alt} />
+          </div>
+        ))}
+      </div>
+
+      {showControls && (
+        <>
+          <button
+            className="carousel-control prev"
+            onClick={handlePrev}
+            aria-label="Previous slide"
+          >
+            Previous
+          </button>
+          <button
+            className="carousel-control next"
+            onClick={handleNext}
+            aria-label="Next slide"
+          >
+            Next
+          </button>
+        </>
+      )}
+
+      {showIndicators && (
+        <div className="carousel-pagination">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              className={`pagination-indicator ${
+                index === activeIndex ? "active" : ""
+              }`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-selected={index === activeIndex}
+            ></button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Carousel;

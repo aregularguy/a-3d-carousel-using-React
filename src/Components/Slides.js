@@ -8,7 +8,6 @@ import 'swiper/css'
 import 'swiper/css-effect-overflow'
 import 'swiper/css-pagination'
 import 'swiper/css-navigation'
-import {Effect}
 const Slides = () => {
     return (
         <div>

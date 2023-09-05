@@ -1,9 +1,9 @@
 import React from 'react'
-import "../Styles/Main.css"
+import "../Styles/Maine.css"
 const Main = () => {
     return (
-<div className="container-main" >
-             <div className="feature">
+<div className="container-main"   >
+             <div className="feature"  >
              Featured Products
              </div>
              <div className="small-para" >

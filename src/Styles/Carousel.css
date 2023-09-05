@@ -1,63 +1,88 @@
-.carousel-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* height: 268px; */
-    perspective: 1000px;
-    width: 1728px;
-height: 541px;
-flex-shrink: 0;
+.carousel-wrapper {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
   }
   
-  .carousel {
-    display: flex;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease-in-out;
+  .carousel-items {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.5s ease;
   }
   
   .carousel-item {
-    width: 20px;
-    height: 20px;
-    margin: 0 20px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    display: flex-box;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    cursor: pointer;
-    position: absolute;
-    transform-origin: center center;
-    transform: rotateY(0deg) translateZ(300px);
-    transition: transform 0.5s ease-in-out;
-    opacity: 0.7;
-    user-select: none;
-  
-    &.active {
-      transform: rotateY(0deg) translateZ(300px);
-      opacity: 1;
-    }
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
   }
   
-  .prev-button,
-  .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
+  .carousel-control {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(0, 0, 0, 0.3);
+	color: #fff;
+	border: none;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	outline: none;
   }
   
-  .prev-button {
-    left: 20px;
+  .carousel-control.prev {
+	left: 0;
   }
   
-  .next-button {
-    right: 20px;
+  .carousel-control.next {
+	right: 0;
   }
   
+  .carousel-pagination {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 0.5rem;
+	padding: 1rem;
+  }
+  
+  .pagination-indicator {
+	width: 1rem;
+	height: 1rem;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	outline: none;
+  }
+  
+  .pagination-indicator.active {
+	background-color: rgba(255, 255, 255, 1);
+  }
+  
+  .carousel-wrapper.fade .carousel-items {
+	position: relative;
+  }
+  
+  .carousel-wrapper.fade .carousel-item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+  }
+  
+  .carousel-wrapper.fade .carousel-item.active {
+	position: relative;
+	opacity: 1;
+  }

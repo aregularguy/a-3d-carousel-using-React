@@ -23,7 +23,6 @@ function App() {
    <Navbar/>
     <Main />
     <Pages />
-    <SandBox />
       </>
   );
 }
